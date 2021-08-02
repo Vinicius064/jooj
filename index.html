@@ -2,345 +2,68 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>JavaScript</title>
+		<title>Pedra papel ou tesoura</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<style type="text/css">
-			@font-face{
-  				font-family: "KG";
-  				src: url("KGPrimaryPenmanshipAlt.woff");
-			}
-			hr{
-				margin: 30px 5px;
-			}
 			body{
 				padding: 20px;
-				position: relative;
 			}
-			*{
-				font-family: KG;
-				font-size: 20px;
-				box-sizing: border-box;
-				margin: 0px;
-				padding: 0px;
-			}
-			#topo button{
-				margin: 3px 10px;
-				width: 100px;
-				border: 2px solid black;
-				box-shadow: 3px 3px 0 0 black;
-			}	
-			#topo button:hover{
-				cursor: pointer;
-			}					
-			#topo{
-				width: 100%;
-				text-align: center;
-			}
-			.classe1{
-				background: white;
-			}
-			.classe2{
-				background: pink;
-			}
-			/*
-			********************************** calculadora **********************************
-			*/
-			#calculadora{
-				margin: 0 auto;
-				padding: 10px;
-				padding-top: 30px;
-				width: 250px;
-				height: 330px;
-				border-radius: 15px;
-				background: #2E2E2E;
-				box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.7);
-			}
-			#visor{
-				padding-right: 5px;
-				width: 100%;
-				height: 35px;
-				border-radius: 6px;
-				text-align: right;
-				background: #C0C0C0;
-				margin-bottom: 20px;
-			}
-			#botoes button{
-				width: 53px;
-				height: 35px;
-				background: #4D4B64;
-				border: none;
-				border-radius: 3px;
-				margin: 4px 0;
-				box-shadow: 2px 2px 0 0 rgb(0, 0, 0);
+			button{
+				background: orange;
 				color: white;
+				border: 2px solid black;
 			}
-			#botoes button.grandex{
-				width: 112px;
+			button:hover{
+				background: darkorange;
 			}
-			#botoes button.grandey{
-				height: 79px;
-				float: right;
-				margin-right: 1px;
-			}
-			#botoes button:hover{
-				background: #3C3B4A;
-				cursor: pointer;
-			}
-		</style>	
+		</style>
 	</head>
-	<body id="corpo">
-		<!--
-		********************************** Topo **********************************
-		-->
-		<div id="topo">
-			<button onclick="acao('white', 'black')" type="button" style="background: white; color: black;">Branco</button>
-			<button onclick="acao('#CD5C5C', 'black')" type="button" style="background: #CD5C5C; color: white;">Vermelho</button>
-			<button onclick="acao('#9ACD32', 'black')" type="button" style="background: #9ACD32; color: white;">Verde</button>
-			<button onclick="acao('#6495ED' , 'black')" type="button" style="background: #6495ED; color: white;">Azul</button>
-			<button onclick="acao('#6E6E6E', 'white')" type="button" style="background: #6E6E6E; color: white;">Cinza</button>
-		</div>
-		<hr>
-		<!--
-		********************************** Caracter **********************************
-		-->
-		<div>
-			<input type="text" name="nome" placeholder="Digite um caracter aqui" id="caracter" onkeyup="caracterDigitado()" style="width: 200px; border: 1px solid black;">
-			<br><br>
-			<span>Letras:
-				<input type="text" name="nome" disabled="disabled" id="letras" style="width: 15px">
-			</span>
-			<span>Números:
-				<input type="text" name="nome" disabled="disabled" id="numeros" style="width: 15px">
-			</span>
-		</div>
-		<hr>
-		<!--
-		********************************** Alterar classe **********************************
-		-->
-		<div id="topo">
-			<button id="alterarClasse" onclick="alterar()" class="classe1">
-				Alterar classe
-			</button>
-		</div>
-		<hr>
-		<!--
-		********************************** Calculadora **********************************
-		-->
-		<div id="calculadora">
-			<input id="visor" type="text" name="" placeholder="0" disabled="disabled">
-			<div id="botoes">
-				<button onclick="press('c')" class="grandex">C</button>
-				<button onclick="press('/')">/</button>
-				<button onclick="press('*')">X</button>
-				<button onclick="press(7)">7</button>
-				<button onclick="press(8)">8</button>
-				<button onclick="press(9)">9</button>
-				<button onclick="press('-')">-</button>
-				<button onclick="press(4)">4</button>
-				<button onclick="press(5)">5</button>
-				<button onclick="press(6)">6</button>
-				<button onclick="press('+')">+</button>
-				<button onclick="press(1)">1</button>
-				<button onclick="press(2)">2</button>
-				<button onclick="press(3)">3</button>
-				<button onclick="press('=')" class="grandey">=</button>
-				<button onclick="press(0)" class="grandex">0</button>
-				<button onclick="press('.')">.</button>
-			</div>			
-		</div>
-		<hr>
-		<!--
-		********************************** Listas **********************************
-		-->
-		<h4>Lista em ordem alfabética</h4>
-		<input id="listaNomes" type="text" name="" disabled="disabled" style="width: 185px">
-		<h4>Lista em ordem crescente</h4>
-		<input id="listaNumeros" type="text" name="" disabled="disabled" style="width: 185px">
-		<hr>
-		<!--
-		********************************** Abrir Janela **********************************
-		-->
-		<button onclick="abrirPopUp()">Abrir calculadora</button>
-		<button onclick="fecharPopUp()">Fechar calculadora</button>
-		<hr>
-		<!--
-		********************************** Mostrar resolução **********************************
-		-->
-		<button onclick="mostrarResolucao()">Resolução da sua tela</button>
-		<hr>
-		<!--
-		********************************** BOM location **********************************
-		-->
-		<button onclick="coragem()">Clique aqui se tiver coragem</button>
-		<hr>
-		<!--
-		********************************** Script **********************************
-		-->
+	<body>
+		<h1>Pedra, papel ou tesoura?</h1>
+		<button onclick="acao('pedra')">Pedra</button>
+		<button onclick="acao('papel')">Papel</button>
+		<button onclick="acao('tesoura')">Tesoura</button>
+		<h4>Sua escolha: <span id="suaEscolha"></span></h4>
+		<h4>Escolha da Cpu: <span id="cpuEscolha"></span></h4>
+		<h4 id="resultado"></h4>
 		<script type="text/javascript">
-			function caracterDigitado(){
-				var caracter = document.getElementById('caracter').value
-				document.getElementById('caracter').value = ''
-				caracter.trim() //limpa os espaços em branco nas estremidades das strings
-				if(caracter <= 0 || caracter >= 0){
-					document.getElementById('numeros').value = caracter
+			
+			var suaEscolha = document.getElementById('suaEscolha')
+			var cpuEscolha = document.getElementById('cpuEscolha')
+			var resultado = document.getElementById('resultado')
+
+			function acao(escolha){
+				
+				suaEscolha.innerHTML = escolha
+				cpuEscolha.innerHTML = escolhaCpu()
+
+				if (escolha == cpuEscolha.innerHTML) {
+					resultado.innerHTML = 'Empate'
+				}
+				else if ((escolha == 'pedra') && (cpuEscolha.innerHTML == 'tesoura')) {
+					resultado.innerHTML = 'Venceu'
+				}
+				else if ((escolha == 'papel') && (cpuEscolha.innerHTML == 'pedra')) {
+					resultado.innerHTML = 'Venceu'
+				}
+				else if ((escolha == 'tesoura') && (cpuEscolha.innerHTML == 'papel')) {
+					resultado.innerHTML = 'Venceu'
 				}
 				else{
-					document.getElementById('letras').value = caracter
+					resultado.innerHTML = 'Perdeu'
 				}
 			}
-			function acao(cor, corLetra){
-				document.getElementById('corpo').style.background = cor
-				document.getElementById('corpo').style.color = corLetra
-			}
-			function alterar(){
-				document.getElementById('alterarClasse').className = 'classe2'
-			}
-			function press(valor){
-				if(valor != '='){
-					document.getElementById('visor').value += valor
-				}
-				if(valor == 'c'){
-					document.getElementById('visor').value = ''
-				}
-				if(valor == '='){
-					var resultado = document.getElementById('visor').value
-					document.getElementById('visor').value = eval(resultado)
+			function escolhaCpu(){
+				var escolhaCpu = Math.floor(Math.random() * 3)
+				switch(escolhaCpu){
+					case 0:
+						return 'pedra'
+					case 1:
+						return 'papel'
+					case 2:
+						return 'tesoura'
 				}
 			}
-			/*
-			********************************** Array **********************************
-			*/
-			//os valores podem ser colocados dentro dos colchetes ou das parenteses
-			var listaCompras = Array() // ou var listaCompras = []
-			listaCompras[0] = 'Banana'
-			listaCompras[1] = 'Arroz'
-			listaCompras[2] = 'Sabão'
-			listaCompras[3] = 'Tomates'
-			//inclui um item no final do array:
-			listaCompras.push('Cebola')
-			//inclui um item no início do array:
-			listaCompras.unshift('Detergente')
-			//excluir item do inicio do arrey:
-			listaCompras.shift()
-			//excluir item do final do arrey:
-			listaCompras.pop()
-			console.log(listaCompras)
-			//pesquisar dentro de uma array se um item existe:
-			listaCompras.indexOf('Sabão')
-			//Arrays dentro de Arrays:
-			var listaCoisas = Array()
-			listaCoisas['pessoas'] = Array()
-			listaCoisas['pessoas'][0] = 'Roger'
-			listaCoisas['pessoas'][1] = 'Maria'
-			listaCoisas['pessoas'][2] = 'Rodisvaldo'
-			listaCoisas['numeros'] = Array()
-			listaCoisas['numeros'][0] = '+55 61 9998- 1023'
-			listaCoisas['numeros'][1] = '+55 61 9598- 4257'
-			listaCoisas['numeros'][2] = '+55 61 9798- 9021'
-			console.log(listaCoisas)
-			//lista em ordem alfabética:
-			var lista = Array('Robson', 'Adolfo', 'Lucia ana')
-			document.getElementById('listaNomes').value = lista.sort()
-			//lista em ordem crescente:
-			var listaNumeros = Array(8,42,3,5,1,4,2)
-			document.getElementById('listaNumeros').value = listaNumeros.sort(ordenarNumeros)
-			function ordenarNumeros(a, b){
-				return a - b
-			}
-			/*
-			********************************** Repetições **********************************
-			*/
-			/*var list = Array()
-			var x = 1
-			while(x<=5){
-				var inLista = prompt('Digite um número')
-				list.push(inLista)
-				x++
-			}
-			//pode usar o break pra interromper a repetição
-			//usar o continue faz com que o resto da repetição não aconteça e faça a verificação
-			prompt(list)*/
-			//do while é a mesma coisa mas a verificação é no final, assim por tanto tendo que ser executado no mínimo uma vez
-			for(var y = 1; y <= 10; y++){
-				for(var x = 1; x <= 10; x++){
-				document.write(y + ' X ' + x + ' = ' + y*x + '<br>')
-				}
-				document.write('<hr>')
-			}
-			//for in:
-			var listaConvidados = ['Jorge', 'Camila', 'Maria']
-			for(var x in listaConvidados){
-				//console.log(listaConvidados[x])
-			}
-			listaConvidados.forEach(function(valor, indice, array){
-				console.log(valor + indice)
-				console.log(array)
-			})
-			/* ou
-			//função que vai se repetir para cada item dentro do array:
-			var f = function(valor, indice, array){
-				console.log(valor + indice)
-				console.log(array)
-			}
-			listaConvidados.forEach(f)
-			*/
-			/*
-			********************************** Funções **********************************
-			*/
-			function soma(){
-				var resultado = 0
-				//argument tras os parametros
-				//in pega o indice
-				for(var x in arguments){
-					resultado += arguments[x]
-				}
-				return resultado
-			}
-			console.log(soma(2, 3, 5, 0.5))
-			/*
-			********************************* Tratamento de erros *********************************
-			*/
-			var video = Array()
-			video[1] = Array()
-			video[1]['nome'] = 'Lucifer'
-			video[1]['categoria'] = 'Série'
-
-			try{
-				console.log(video[2]['Breaking Bad']) //não existe por tanto trará um erro
-			}catch(erro){
-				//eviar erro para o servidor
-				console.log('Título não encontrado')
-				//o throw interrompe o script
-				//throw new Error('Houve um erro, mas já estamos trabalhando nisso')
-			}
-			finally{
-				console.log('Veja')
-			}
-			console.log('Outros títulos...')
-			var janela
-			function abrirPopUp(){
-				janela = window.open('popup.html', 'Calculadora', 'width = 270, height = 350')
-			}
-			function fecharPopUp(){
-				janela.close()
-			}
-			function mostrarResolucao(){
-				alert('Resolução da sua tela: ' + window.screen.width + 'px por ' + window.screen.height + 'px')
-			}
-			function coragem(){
-				window.location.href="https://media.giphy.com/media/jpbnoe3UIa8TU8LM13/giphy.gif"
-			}
-			setTimeout(function(){
-				alert('Opa')
-			}, 10000)
-			//clearInterval()
-			/*var tempo = 100
-			setInterval(function(){ document.write(tempo); tempo-- }, 1000)
-			clearInterval(nome da função) e clearTimeout(nome da função)
-			*/
-			/*
-			********************************** Recarrega **********************************
-			*/
-			//window.location.reload()
 		</script>
 	</body>
 </html>
