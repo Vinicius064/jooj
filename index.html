@@ -5,8 +5,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>Pedra papel ou tesoura</title>
 		<link rel="stylesheet" type="text/css" href="normalize.css">
-		<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">-->
-		<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
 		<style type="text/css">
 			body{
 				font-size: 1em;
@@ -14,11 +12,13 @@
 				background: #FFE4B5;
 			}
 			button{
+				margin: 4px 5px;
 				padding: 10px 15px;
 				background: orange;
 				color: white;
 				border: none;
 				box-shadow: 0 5px 0 0 #DF7401;
+				
 			}
 			button:hover{
 				background: darkorange;
@@ -30,20 +30,20 @@
 				box-shadow: none;
 			}
 			h1{
-				width: 100%;
+				text-align: center;
+			}
+			div{
+				text-align: center;
 			}
 		</style>
 	</head>
 	<body>
 		<h1>Pedra, papel ou tesoura?</h1>
-		<button onclick="acao('pedra'); gerarResultado()">Pedra</button>
-		<button onclick="acao('papel'); gerarResultado()">Papel</button>
-		<button onclick="acao('tesoura'); gerarResultado()">Tesoura</button>
-		<!--
-		<h4>Sua escolha: <span id="suaEscolha"></span></h4>
-		<h4>Escolha da Cpu: <span id="cpuEscolha"></span></h4>
-		<h4 id="resultado"></h4>
-		-->
+		<div>
+			<button onclick="acao('pedra'); gerarResultado()">Pedra</button>
+			<button onclick="acao('papel'); gerarResultado()">Papel</button>
+			<button onclick="acao('tesoura'); gerarResultado()">Tesoura</button>
+		</div>
 		<script type="text/javascript">
 			
 			var suaEscolha
@@ -74,6 +74,7 @@
 				var escolha = document.createElement('h3')
 				escolha.textContent = 'Você escolheu ' + suaEscolha
 				escolha.id = 'escolha'
+				escolha.align = 'center'
 				document.body.appendChild(escolha)
 				if(document.getElementById('Escolha')){
 					document.getElementById('Escolha').remove()
@@ -81,6 +82,7 @@
 				cpuEscolha = document.createElement('h3')
 				cpuEscolha.textContent = 'CPU escolheu ' + escolhaDaCpu
 				cpuEscolha.id = 'Escolha'
+				cpuEscolha.align = 'center'
 				document.body.appendChild(cpuEscolha)
 				
 
@@ -105,6 +107,7 @@
 				resultado = document.createElement('h2')
 				resultado.textContent = Resultado
 				resultado.id = 'Resultado'
+				resultado.align = 'center'
 				document.body.appendChild(resultado)
 			}
 		</script>
